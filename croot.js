@@ -1,3 +1,16 @@
+export function getMarkdown(target_url,responseFunction){
+    var requestOptions = {
+    method: 'GET',
+    redirect: 'follow'
+    };
+
+    fetch(target_url, requestOptions)
+    .then(response => response.text())
+    .then(result => simpleMarkdown(result))
+    .then(parsemd => responseFunction(parsemd))
+    .catch(error => console.log('error', error));
+}
+
 //=== simple markdown parser
 function simpleMarkdown(mdText) {
 
